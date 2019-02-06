@@ -77,7 +77,7 @@ wall
 
 
 
-object: each robot (numbered, according to player number)
+object (or class?): each robot (numbered, according to player number)
 position
 facing
 upgrades perm
