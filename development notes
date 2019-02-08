@@ -77,19 +77,6 @@ wall
 
 
 
-object (or class?): each robot (numbered, according to player number)
-position
-facing
-upgrades perm
-upgrades temp
-victory tokens
-energy
-zugstapel, sortiert
-handkarten, sortiert
-register 1-5
-ablagestapel
-
-
 object: board
 tile type layout
 energy cubes
