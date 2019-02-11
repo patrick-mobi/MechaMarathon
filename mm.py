@@ -1,8 +1,6 @@
 from tkinter import *
 root = Tk()
 
-def test():
-    i=1
 
 #variables for images
 neutral = PhotoImage(file="graphics/neutral.gif")
@@ -11,28 +9,115 @@ r1e =     PhotoImage(file="graphics/r1e.gif")
 r1s =     PhotoImage(file="graphics/r1s.gif")
 r1w =     PhotoImage(file="graphics/r1w.gif")
 
-class robot():
-    def __init__(self):
-        self.postion = [0,0]
-        self.direction = "n"
-        self.tokens = 0
-        self.energy = 5
-        self.registers = ["","","","",""]
-        self.deck = ["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"]
-        self.discard = []
-        self.hand = []
+#robots, list of
+#position, direction, tokens, energy, register, deck, discard, hand
+r1 = [2,2,"n",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
 
-    #reads a given register and moves the robot accordingly
-    def move(reg):
-        if self.registers[reg] == "1for":
-            if self.direction == "n":
-                self.position[0] -= 1
-            elif self.direction == "e":
-                self.position[1] += 1
-            elif self.direction == "s":
-                self.position[0] += 1
-            elif self.direction == "w":
-                self.position[1] -= 1
+#define all squares
+l00=Label(root, width=30, height=30, image=neutral)
+l10=Label(root, width=30, height=30, image=neutral)
+l20=Label(root, width=30, height=30, image=neutral)
+l30=Label(root, width=30, height=30, image=neutral)
+l40=Label(root, width=30, height=30, image=neutral)
+l01=Label(root, width=30, height=30, image=neutral)
+l11=Label(root, width=30, height=30, image=neutral)
+l21=Label(root, width=30, height=30, image=neutral)
+l31=Label(root, width=30, height=30, image=neutral)
+l41=Label(root, width=30, height=30, image=neutral)
+l02=Label(root, width=30, height=30, image=neutral)
+l12=Label(root, width=30, height=30, image=neutral)
+l22=Label(root, width=30, height=30, image=neutral)
+l32=Label(root, width=30, height=30, image=neutral)
+l42=Label(root, width=30, height=30, image=neutral)
+l03=Label(root, width=30, height=30, image=neutral)
+l13=Label(root, width=30, height=30, image=neutral)
+l23=Label(root, width=30, height=30, image=neutral)
+l33=Label(root, width=30, height=30, image=neutral)
+l43=Label(root, width=30, height=30, image=neutral)
+l04=Label(root, width=30, height=30, image=neutral)
+l14=Label(root, width=30, height=30, image=neutral)
+l24=Label(root, width=30, height=30, image=neutral)
+l34=Label(root, width=30, height=30, image=neutral)
+l44=Label(root, width=30, height=30, image=neutral)
+
+lr1n=Label(width=30, height=30, image=r1n)
+lr1e=Label(width=30, height=30, image=r1e)
+lr1s=Label(width=30, height=30, image=r1s)
+lr1w=Label(width=30, height=30, image=r1w)
+
+
+
+
+#draw all squares
+def drawBoard():
+    global r1
+    #draw empty board
+    l00.grid(row=0,column=0)
+    l10.grid(row=1,column=0)
+    l20.grid(row=2,column=0)
+    l30.grid(row=3,column=0)
+    l40.grid(row=4,column=0)
+    l01.grid(row=0,column=1)
+    l11.grid(row=1,column=1)
+    l21.grid(row=2,column=1)
+    l31.grid(row=3,column=1)
+    l41.grid(row=4,column=1)
+    l02.grid(row=0,column=2)
+    l12.grid(row=1,column=2)
+    l22.grid(row=2,column=2)
+    l32.grid(row=3,column=2)
+    l42.grid(row=4,column=2)
+    l03.grid(row=0,column=3)
+    l13.grid(row=1,column=3)
+    l23.grid(row=2,column=3)
+    l33.grid(row=3,column=3)
+    l43.grid(row=4,column=3)
+    l04.grid(row=0,column=4)
+    l14.grid(row=1,column=4)
+    l24.grid(row=2,column=4)
+    l34.grid(row=3,column=4)
+    l44.grid(row=4,column=4)
+
+    #draw robots on board
+    lr1n.grid(row=r1[0],column=r1[1])
+    print ("board drawn")
+
+def test():
+    r1[1] +=1
+
+#check tile the robot is on for permanent hazard (i.e. bottomless pit)
+def checkTile(robot):
+    dummy=0
+
+def forw(robot):
+    if robot[2] == "n":
+        robot[0] -=1
+    elif robot[2] == "e":
+        robot[1] +=1
+    elif robot[2] == "s":
+        robot[0] +=1
+    elif robot[2] == "w":
+        robot[1] -=1
+    else:
+        print ("mistake at def forw")
+    checkTile(robot)
+    drawBoard()
+
+def backw(robot):
+    if robot[2] == "n":
+        robot[0] +=1
+    elif robot[2] == "e":
+        robot[1] -=1
+    elif robot[2] == "s":
+        robot[0] -=1
+    elif robot[2] == "w":
+        robot[1] +=1
+    else:
+        print ("mistake at def backw")
+    checkTile(robot)
+    drawBoard()
+
+'''
             else:
                 print ("mistake at def move(), 1for")
         elif self.registers[reg] == "2for":
@@ -115,81 +200,22 @@ class robot():
 
 #create r1
 r1=robot
-    
+    '''
 
-    
-#define all squares
-l00=Label(width=30, height=30, image=neutral)
-l10=Label(width=30, height=30, image=neutral)
-l20=Label(width=30, height=30, image=neutral)
-l30=Label(width=30, height=30, image=neutral)
-l40=Label(width=30, height=30, image=neutral)
-l01=Label(width=30, height=30, image=neutral)
-l11=Label(width=30, height=30, image=neutral)
-l21=Label(width=30, height=30, image=neutral)
-l31=Label(width=30, height=30, image=neutral)
-l41=Label(width=30, height=30, image=neutral)
-l02=Label(width=30, height=30, image=neutral)
-l12=Label(width=30, height=30, image=neutral)
-l22=Label(width=30, height=30, image=neutral)
-l32=Label(width=30, height=30, image=neutral)
-l42=Label(width=30, height=30, image=neutral)
-l03=Label(width=30, height=30, image=neutral)
-l13=Label(width=30, height=30, image=neutral)
-l23=Label(width=30, height=30, image=neutral)
-l33=Label(width=30, height=30, image=neutral)
-l43=Label(width=30, height=30, image=neutral)
-l04=Label(width=30, height=30, image=neutral)
-l14=Label(width=30, height=30, image=neutral)
-l24=Label(width=30, height=30, image=neutral)
-l34=Label(width=30, height=30, image=neutral)
-l44=Label(width=30, height=30, image=neutral)
 
-lr1n=Label(width=30, height=30, image=r1n)
 
-b1for=Button(command=test(), width=0, text="1for")
 
-#draw all squares
-def drawBoard():
-    #draw empty board
-    l00.grid(row=0,column=0)
-    l10.grid(row=1,column=0)
-    l20.grid(row=2,column=0)
-    l30.grid(row=3,column=0)
-    l40.grid(row=4,column=0)
-    l01.grid(row=0,column=1)
-    l11.grid(row=1,column=1)
-    l21.grid(row=2,column=1)
-    l31.grid(row=3,column=1)
-    l41.grid(row=4,column=1)
-    l02.grid(row=0,column=2)
-    l12.grid(row=1,column=2)
-    l22.grid(row=2,column=2)
-    l32.grid(row=3,column=2)
-    l42.grid(row=4,column=2)
-    l03.grid(row=0,column=3)
-    l13.grid(row=1,column=3)
-    l23.grid(row=2,column=3)
-    l33.grid(row=3,column=3)
-    l43.grid(row=4,column=3)
-    l04.grid(row=0,column=4)
-    l14.grid(row=1,column=4)
-    l24.grid(row=2,column=4)
-    l34.grid(row=3,column=4)
-    l44.grid(row=4,column=4)
+drawB=Button(command=drawBoard,text="draw")
+drawB.grid(row=0,column=7)
 
-    #draw robots on board
-    lr1n.grid(row=0,column=0)
-    
-    #draw buttons
-    b1for.grid(row=0,column=5)
-
+testB=Button(command=test,text="test")
+testB.grid(row=0,column=8)
 
 
 def shuffleDeck(deck):
     dummy=0
 
-
+drawBoard()
 #take 5 cards, if deck is empty, take discard list, shuffle, and make new deck list
 
 
@@ -200,7 +226,6 @@ def shuffleDeck(deck):
 
 
 
-drawBoard()
 root.mainloop()
 
 
