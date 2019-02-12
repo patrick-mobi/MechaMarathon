@@ -2,14 +2,32 @@ from tkinter import *
 root = Tk()
 
 
-#maps
+#map as a list of lists
 testMap=[
-["neutral","fastcone","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral"]]
+["neutral","fastcone","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"]]
 
+
+
+#for loading in of later, custom maps
 board=testMap
 
 #variables for images
@@ -24,24 +42,81 @@ fastcons= PhotoImage(file="graphics/fastcons.gif")
 fastconw= PhotoImage(file="graphics/fastconw.gif")
 
 #robots, list of
-#position, direction, tokens, energy, register, deck, discard, hand
-r1 = [0,0,"n",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+#2xposition, direction, victorytokens, energy, register, deck, discard, hand
+r1 = [1,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r2 = [2,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r3 = [3,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r4 = [4,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r5 = [5,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r6 = [6,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r7 = [7,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+r8 = [8,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
+
+
+#victorytokens, list of 2xposition
+#v0 = []
+
+#energycubes, list of 2xposition
+#e0 = []
+
+
+
+
+
+
+
+def square(type):
+    if type == "neutral":
+        return neutral
+    if type == "start":
+        return start
+    if type == "radar":
+        return radar
+    if type == "fastcone":
+        return fastcone
+
+def cursor(d):
+    if d == "n":
+        return "^"
+    if d == "e":
+        return ">"
+    if d == "s":
+        return "v"
+    if d == "w":
+        return "<"
 
 def drawBoard():
-    global r1
-    global neutral
-    global fastcone
+    global r1, neutral
+    global fastconn, fastcone, fastcons, fastconw
+    
+#draw empty board
     x=0
     while x < len(board):
         y=0
         while y < len(board[x]):
-            Label(root, text=board[x][y]).grid(row=x, column=y)
+            Label(root, height="30", width="30", relief = "groove", image=square(board[x][y])).grid(row=x, column=y)#text=board[x][y]+"\n"+"\n"
             y+=1
         x+=1
 
-def test():
-    r1[1] +=1
-    r1[2] = "s"
+    #draw robots
+    Label(root, text=cursor(r1[2]), fg="red").grid(row=r1[0], column=r1[1])
+    Label(root, text=cursor(r2[2]), fg="blue").grid(row=r2[0], column=r2[1])
+    Label(root, text=cursor(r3[2]), fg="green").grid(row=r3[0], column=r3[1])
+    Label(root, text=cursor(r4[2]), fg="yellow").grid(row=r4[0], column=r4[1])
+    Label(root, text=cursor(r5[2]), fg="purple").grid(row=r5[0], column=r5[1])
+    Label(root, text=cursor(r6[2]), fg="dark orange").grid(row=r6[0], column=r6[1])
+    Label(root, text=cursor(r7[2]), fg="white").grid(row=r7[0], column=r7[1])
+    Label(root, text=cursor(r8[2]), fg="black").grid(row=r8[0], column=r8[1])
+
+    #victorytokens
+    #draw energycubes
 
 #check tile the robot is on for permanent hazard (i.e. bottomless pit)
 def checkTile(robot):
@@ -163,11 +238,15 @@ r1=robot
 
 
 
+def test():
+    r1[1] +=1
+    r1[2] = "s"
+
 drawB=Button(command=drawBoard,text="draw")
-drawB.grid(row=0,column=7)
+drawB.grid(row=0,column=200)
 
 testB=Button(command=test,text="test")
-testB.grid(row=0,column=8)
+testB.grid(row=0,column=201)
 
 
 def shuffleDeck(deck):

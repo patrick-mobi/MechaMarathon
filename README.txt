@@ -16,17 +16,17 @@ zwei optionen: spiel hosten, spiel beitreten
 hosten: qr-code wird angezeigt
 beitreten: qr-scanner wird geöffnet
 
-farbwahl? oder nach beitrittsreihenfolge
+
 
 
 game screen
   upper half
-    two tabs
+    two tabs, player chooses
       board watching
       player loadout watching
   lower half
-    either own cards, programming
-    or upgrade shop
+    either own cards + programming registers
+    or upgrade shop (based on play phase)
     
     
 ##########################################
@@ -50,7 +50,7 @@ wenn niemand kauft, offene upgrades ablegen
 countdown zum programmieren
 alle spieler: x karten vom zugstapel auf die hand
 
-spieler klicken programm zusammen, erster drückt sanduhr
+spieler programmieren ihre Register, erster drückt sanduhr
 countdown für alle: 30 sekunden
 
 ende der klickphase
@@ -82,9 +82,10 @@ neutral
 start
 radar
 wall
+pit
 
-
-
+perm hazard: wall, pit, cliff, portal,
+temp hazard: laser, conveyor, gear,
 
 object: board
 tile type layout
