@@ -4,7 +4,7 @@ root = Tk()
 
 #maps
 testMap=[
-["fastcone","neutral","neutral","neutral","neutral"],
+["neutral","fastcone","neutral","neutral","neutral"],
 ["neutral","neutral","neutral","neutral","neutral"],
 ["neutral","neutral","neutral","neutral","neutral"],
 ["neutral","neutral","neutral","neutral","neutral"],
@@ -27,9 +27,6 @@ fastconw= PhotoImage(file="graphics/fastconw.gif")
 #position, direction, tokens, energy, register, deck, discard, hand
 r1 = [0,0,"n",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
 
-
-#Label(root, width=30, height=30, image=neutral)
-
 def drawBoard():
     global r1
     global neutral
@@ -38,7 +35,7 @@ def drawBoard():
     while x < len(board):
         y=0
         while y < len(board[x]):
-            Label(root, image=fastcone).grid(row=y, column=x)
+            Label(root, text=board[x][y]).grid(row=x, column=y)
             y+=1
         x+=1
 
