@@ -69,7 +69,7 @@ PROGRAMMING STUFF
 
 
 board tiles:
-standard
+neutral
 start
 radar
 wall

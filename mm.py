@@ -2,88 +2,49 @@ from tkinter import *
 root = Tk()
 
 
+#maps
+testMap=[
+["fastcone","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral"]]
+
+board=testMap
+
 #variables for images
 neutral = PhotoImage(file="graphics/neutral.gif")
 r1n =     PhotoImage(file="graphics/r1n.gif")
 r1e =     PhotoImage(file="graphics/r1e.gif")
 r1s =     PhotoImage(file="graphics/r1s.gif")
 r1w =     PhotoImage(file="graphics/r1w.gif")
+fastconn= PhotoImage(file="graphics/fastconn.gif")
+fastcone= PhotoImage(file="graphics/fastcone.gif")
+fastcons= PhotoImage(file="graphics/fastcons.gif")
+fastconw= PhotoImage(file="graphics/fastconw.gif")
 
 #robots, list of
 #position, direction, tokens, energy, register, deck, discard, hand
-r1 = [2,2,"n",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
-
-#define all squares
-l00=Label(root, width=30, height=30, image=neutral)
-l10=Label(root, width=30, height=30, image=neutral)
-l20=Label(root, width=30, height=30, image=neutral)
-l30=Label(root, width=30, height=30, image=neutral)
-l40=Label(root, width=30, height=30, image=neutral)
-l01=Label(root, width=30, height=30, image=neutral)
-l11=Label(root, width=30, height=30, image=neutral)
-l21=Label(root, width=30, height=30, image=neutral)
-l31=Label(root, width=30, height=30, image=neutral)
-l41=Label(root, width=30, height=30, image=neutral)
-l02=Label(root, width=30, height=30, image=neutral)
-l12=Label(root, width=30, height=30, image=neutral)
-l22=Label(root, width=30, height=30, image=neutral)
-l32=Label(root, width=30, height=30, image=neutral)
-l42=Label(root, width=30, height=30, image=neutral)
-l03=Label(root, width=30, height=30, image=neutral)
-l13=Label(root, width=30, height=30, image=neutral)
-l23=Label(root, width=30, height=30, image=neutral)
-l33=Label(root, width=30, height=30, image=neutral)
-l43=Label(root, width=30, height=30, image=neutral)
-l04=Label(root, width=30, height=30, image=neutral)
-l14=Label(root, width=30, height=30, image=neutral)
-l24=Label(root, width=30, height=30, image=neutral)
-l34=Label(root, width=30, height=30, image=neutral)
-l44=Label(root, width=30, height=30, image=neutral)
-
-lr1n=Label(width=30, height=30, image=r1n)
-lr1e=Label(width=30, height=30, image=r1e)
-lr1s=Label(width=30, height=30, image=r1s)
-lr1w=Label(width=30, height=30, image=r1w)
+r1 = [0,0,"n",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2for","2for","3for","1back","left","left","left","right","right","right","uturn","again","again","powerup"], [], []]
 
 
+#Label(root, width=30, height=30, image=neutral)
 
-
-#draw all squares
 def drawBoard():
     global r1
-    #draw empty board
-    l00.grid(row=0,column=0)
-    l10.grid(row=1,column=0)
-    l20.grid(row=2,column=0)
-    l30.grid(row=3,column=0)
-    l40.grid(row=4,column=0)
-    l01.grid(row=0,column=1)
-    l11.grid(row=1,column=1)
-    l21.grid(row=2,column=1)
-    l31.grid(row=3,column=1)
-    l41.grid(row=4,column=1)
-    l02.grid(row=0,column=2)
-    l12.grid(row=1,column=2)
-    l22.grid(row=2,column=2)
-    l32.grid(row=3,column=2)
-    l42.grid(row=4,column=2)
-    l03.grid(row=0,column=3)
-    l13.grid(row=1,column=3)
-    l23.grid(row=2,column=3)
-    l33.grid(row=3,column=3)
-    l43.grid(row=4,column=3)
-    l04.grid(row=0,column=4)
-    l14.grid(row=1,column=4)
-    l24.grid(row=2,column=4)
-    l34.grid(row=3,column=4)
-    l44.grid(row=4,column=4)
-
-    #draw robots on board
-    lr1n.grid(row=r1[0],column=r1[1])
-    print ("board drawn")
+    global neutral
+    global fastcone
+    x=0
+    while x < len(board):
+        y=0
+        while y < len(board[x]):
+            Label(root, image=fastcone).grid(row=y, column=x)
+            y+=1
+        x+=1
 
 def test():
     r1[1] +=1
+    r1[2] = "s"
 
 #check tile the robot is on for permanent hazard (i.e. bottomless pit)
 def checkTile(robot):
