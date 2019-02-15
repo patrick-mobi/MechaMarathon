@@ -82,7 +82,20 @@ neutral
 start
 radar
 wall
+fastcon x4
+slowcon x4
+fastcorner x4
+slowcorner x4
 pit
+gears x2
+respawn
+
+objects:
+robots
+energycubes
+victorytokens
+lasers
+
 
 perm hazard: wall, pit, cliff, portal,
 temp hazard: laser, conveyor, gear,

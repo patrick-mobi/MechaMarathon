@@ -4,37 +4,41 @@ root = Tk()
 
 #map as a list of lists
 testMap=[
-["neutral","fastcone","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
-["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"]]
-
-
-#victorytokens, list of 2xposition
-#v0 = []
-
-#energycubes, list of 2xposition
-#e0 = []
+["neutral","fastcone","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"],
+["neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral","neutral"]]
 
 
 #for loading in of later, custom maps
 board=testMap
+
+
+
+
+#tokens, list of list of 2xposition
+tokenlist = [[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+
+#energycubes, list of list of 2xposition
+energylist = [[10,3],[11,4]]
+
+
 
 
 #robots, list of
@@ -61,9 +65,20 @@ r8 = [8,0,"e",0,5,["","","","",""],["1for","1for","1for","1for","1for","2for","2
 
 
 
+####################################################################
+####################################################################
+####################################################################
 
 #variables for images
+energy=   PhotoImage(file="graphics/energy.gif")
+
+fastconn= PhotoImage(file="graphics/fastconn.gif")
+fastcone= PhotoImage(file="graphics/fastcone.gif")
+fastcons= PhotoImage(file="graphics/fastcons.gif")
+fastconw= PhotoImage(file="graphics/fastconw.gif")
+
 neutral = PhotoImage(file="graphics/neutral.gif")
+
 r1n =     PhotoImage(file="graphics/r1n.gif")
 r1e =     PhotoImage(file="graphics/r1e.gif")
 r1s =     PhotoImage(file="graphics/r1s.gif")
@@ -104,21 +119,22 @@ r8e =     PhotoImage(file="graphics/r8e.gif")
 r8s =     PhotoImage(file="graphics/r8s.gif")
 r8w =     PhotoImage(file="graphics/r8w.gif")
 
-fastconn= PhotoImage(file="graphics/fastconn.gif")
-fastcone= PhotoImage(file="graphics/fastcone.gif")
-fastcons= PhotoImage(file="graphics/fastcons.gif")
-fastconw= PhotoImage(file="graphics/fastconw.gif")
+token1 =  PhotoImage(file="graphics/token1.gif")
+token2 =  PhotoImage(file="graphics/token2.gif")
+token3 =  PhotoImage(file="graphics/token3.gif")
+token4 =  PhotoImage(file="graphics/token4.gif")
+token5 =  PhotoImage(file="graphics/token5.gif")
+token6 =  PhotoImage(file="graphics/token6.gif")
+token7 =  PhotoImage(file="graphics/token7.gif")
+token8 =  PhotoImage(file="graphics/token8.gif")
 
 
 
+####################################################################
+####################################################################
+####################################################################
 
-
-
-
-
-
-
-
+#definitions for drawing the board
 
 def square(type):
     if type == "neutral":
@@ -130,6 +146,8 @@ def square(type):
     if type == "fastcone":
         return fastcone
 
+
+#definitions for drawing elements on the board
 
 def r1cursor(d):
     if d == "n":
@@ -211,6 +229,30 @@ def r8cursor(d):
     if d == "w":
         return r8w
 
+def token(n):
+    if n == 0:
+        return token1
+    if n == 1:
+        return token2
+    if n == 2:
+        return token3
+    if n == 3:
+        return token4
+    if n == 4:
+        return token5
+    if n == 5:
+        return token6
+    if n == 6:
+        return token7
+    if n == 7:
+        return token8
+
+
+
+####################################################################
+####################################################################
+####################################################################
+
 
 
 #draw empty board
@@ -223,19 +265,44 @@ def drawBoard():
             y+=1
         x+=1
 
-    #draw robots
+    #draw robots, energycubes and victorytokens
+def drawObjects():
+    
+    #grid_forget all robots and objects
+    Label(root, image=r1cursor(r1[2])).grid_forget
+    Label(root, image=r2cursor(r2[2])).grid_forget
+    Label(root, image=r3cursor(r3[2])).grid_forget
+    Label(root, image=r4cursor(r4[2])).grid_forget
+    Label(root, image=r5cursor(r5[2])).grid_forget
+    Label(root, image=r6cursor(r6[2])).grid_forget
+    Label(root, image=r7cursor(r7[2])).grid_forget
+    Label(root, image=r8cursor(r8[2])).grid_forget
+
+    #move and pickup objects while not drawn
+    
+    #after movement and pickup, redraw objects
     Label(root, image=r1cursor(r1[2])).grid(row=r1[0], column=r1[1])
-    Label(root, image=r2cursor(r1[2])).grid(row=r2[0], column=r2[1])
-    Label(root, image=r3cursor(r1[2])).grid(row=r3[0], column=r3[1])
-    Label(root, image=r4cursor(r1[2])).grid(row=r4[0], column=r4[1])
-    Label(root, image=r5cursor(r1[2])).grid(row=r5[0], column=r5[1])
-    Label(root, image=r6cursor(r1[2])).grid(row=r6[0], column=r6[1])
-    Label(root, image=r7cursor(r1[2])).grid(row=r7[0], column=r7[1])
-    Label(root, image=r8cursor(r1[2])).grid(row=r8[0], column=r8[1])
+    Label(root, image=r2cursor(r2[2])).grid(row=r2[0], column=r2[1])
+    Label(root, image=r3cursor(r3[2])).grid(row=r3[0], column=r3[1])
+    Label(root, image=r4cursor(r4[2])).grid(row=r4[0], column=r4[1])
+    Label(root, image=r5cursor(r5[2])).grid(row=r5[0], column=r5[1])
+    Label(root, image=r6cursor(r6[2])).grid(row=r6[0], column=r6[1])
+    Label(root, image=r7cursor(r7[2])).grid(row=r7[0], column=r7[1])
+    Label(root, image=r8cursor(r8[2])).grid(row=r8[0], column=r8[1])
 
+    #draw energy
+    i=0
+    while i < len(energylist):
+        Label(root, image=energy).grid(row=energylist[i][0], column=energylist[i][1])        
+        i+=1
 
-    #victorytokens
-    #draw energycubes
+    #draw tokens
+    i=0
+    while i < len(tokenlist):
+        Label(root, image=token(i)).grid(row=tokenlist[i][0], column=tokenlist[i][1])        
+        i+=1
+        
+
 
 #check tile the robot is on for permanent hazard (i.e. bottomless pit)
 def checkTile(robot):
@@ -253,7 +320,7 @@ def forw(robot):
     else:
         print ("mistake at def forw")
     checkTile(robot)
-    drawBoard()
+    drawObjects()
 
 def backw(robot):
     if robot[2] == "n":
@@ -267,7 +334,7 @@ def backw(robot):
     else:
         print ("mistake at def backw")
     checkTile(robot)
-    drawBoard()
+    drawObjects()
 
 '''
             else:
@@ -357,21 +424,26 @@ r1=robot
 
 
 
-def test():
-    r1[1] +=1
-    r1[2] = "s"
+def testmove():
+    forw(r2)
+
+def testturn():
+    backw(r2)
 
 drawB=Button(command=drawBoard,text="draw")
 drawB.grid(row=0,column=200)
 
-testB=Button(command=test,text="test")
-testB.grid(row=0,column=201)
+test1=Button(command=testmove,text="forw")
+test1.grid(row=0,column=201)
 
+test2=Button(command=testturn,text="backw")
+test2.grid(row=0,column=202)
 
 def shuffleDeck(deck):
     dummy=0
 
 drawBoard()
+drawObjects()
 #take 5 cards, if deck is empty, take discard list, shuffle, and make new deck list
 
 
